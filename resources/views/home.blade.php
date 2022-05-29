@@ -286,8 +286,8 @@
         @endif
 
         @if (!$forms->isEmpty() &&
-    Auth::check() &&
-    Auth::user()->circles()->approved()->count() > 0)
+            Auth::check() &&
+            Auth::user()->circles()->approved()->count() > 0)
             <list-view>
                 <template v-slot:title>受付中の申請</template>
                 @foreach ($forms as $form)
