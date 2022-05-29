@@ -250,4 +250,11 @@ Route::middleware(['auth', 'verified', 'can:admin', 'staffAuthed'])
                 Route::get('/last-step', 'Admin\Update\LastStepAction')->name('last-step');
                 Route::post('/run', 'Admin\Update\RunAction')->name('run');
             });
+
+        // データベースのアップデート(マイグレーション)
+        Route::prefix('/migrator')
+            ->name('migrator.')
+            ->group(function () {
+                Route::get('/', 'Admin\Migrator\IndexAction')->name('index');
+            });
     });
