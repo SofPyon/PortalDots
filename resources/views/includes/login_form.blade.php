@@ -1,3 +1,7 @@
+{{-- params
+- $disable_password_reset: パスワードリセットページへのリンクを表示しない場合はtrueにする
+- $disable_register: ユーザー登録ページへのリンクを表示しない場合はtrueにする --}}
+
 <form method="post" action="{{ route('login') }}">
     @csrf
 
@@ -31,20 +35,25 @@
         </div>
     </div>
 
-    <p>
-        <a href="{{ route('password.request') }}">
-            パスワードをお忘れの場合はこちら
-        </a>
-    </p>
+    @if (!isset($disable_password_reset) || !$disable_password_reset)
+        <p>
+            <a href="{{ route('password.request') }}">
+                パスワードをお忘れの場合はこちら
+            </a>
+        </p>
+    @endif
 
     <div class="form-group">
         <button type="submit" class="btn is-primary is-block">
             <strong>ログイン</strong>
         </button>
     </div>
-    <p>
-        <a class="btn is-secondary is-block" href="{{ route('register') }}">
-            はじめての方は新規ユーザー登録
-        </a>
-    </p>
+
+    @if (!isset($disable_register) || !$disable_register)
+        <p>
+            <a class="btn is-secondary is-block" href="{{ route('register') }}">
+                はじめての方は新規ユーザー登録
+            </a>
+        </p>
+    @endif
 </form>
